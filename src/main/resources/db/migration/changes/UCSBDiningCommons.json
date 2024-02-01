@@ -2,7 +2,7 @@
     {
         "changeSet": {
           "id": "UCSBDiningCommons-1",
-          "author": "MattP",
+          "author": "KoleK",
           "preConditions": [
             {
               "onFail": "MARK_RAN"
