@@ -147,60 +147,60 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
         // Tests for GET /api/articles?id=...
 
-        // @Test
-        // public void logged_out_users_cannot_get_by_id() throws Exception {
-        //         mockMvc.perform(get("/api/articles?id=7"))
-        //                         .andExpect(status().is(403)); // logged out users can't get by id
-        // }
+        @Test
+        public void logged_out_users_cannot_get_by_id() throws Exception {
+                mockMvc.perform(get("/api/articles?id=7"))
+                                .andExpect(status().is(403)); // logged out users can't get by id
+        }
 
-        // @WithMockUser(roles = { "USER" })
-        // @Test
-        // public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
 
-        //         // arrange
-        //         LocalDate ldt = LocalDate.parse("2022-01-03T00:00:00");
+                // arrange
+                LocalDate ldt = LocalDate.parse("2022-01-03");
 
-        //         Articles articles = Articles.builder()
-        //                         .title("WhoIsHiring")
-        //                         .url("https://news.ycombinator.com/item?id=39217310")
-        //                         .explanation("lolololol")
-        //                         .email("hyi@ucsb.edu")
-        //                         .addedDate(ldt)
-        //                         .build();
+                Articles articles = Articles.builder()
+                                .title("WhoIsHiring")
+                                .url("https://news.ycombinator.com/item?id=39217310")
+                                .explanation("lolololol")
+                                .email("hyi@ucsb.edu")
+                                .dateAdded(ldt)
+                                .build();
 
-        //         when(articlesRepository.findById(eq(7L))).thenReturn(Optional.of(articles));
+                when(articlesRepository.findById(eq(7L))).thenReturn(Optional.of(articles));
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
-        //                         .andExpect(status().isOk()).andReturn();
+                // act
+                MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
+                                .andExpect(status().isOk()).andReturn();
 
-        //         // assert
+                // assert
 
-        //         verify(articlesRepository, times(1)).findById(eq(7L));
-        //         String expectedJson = mapper.writeValueAsString(articles);
-        //         String responseString = response.getResponse().getContentAsString();
-        //         assertEquals(expectedJson, responseString);
-        // }
+                verify(articlesRepository, times(1)).findById(eq(7L));
+                String expectedJson = mapper.writeValueAsString(articles);
+                String responseString = response.getResponse().getContentAsString();
+                assertEquals(expectedJson, responseString);
+        }
 
-        // @WithMockUser(roles = { "USER" })
-        // @Test
-        // public void test_that_logged_in_user_can_get_by_id_when_the_id_does_not_exist() throws Exception {
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_does_not_exist() throws Exception {
 
-        //         // arrange
+                // arrange
 
-        //         when(articlesRepository.findById(eq(7L))).thenReturn(Optional.empty());
+                when(articlesRepository.findById(eq(7L))).thenReturn(Optional.empty());
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
-        //                         .andExpect(status().isNotFound()).andReturn();
+                // act
+                MvcResult response = mockMvc.perform(get("/api/articles?id=7"))
+                                .andExpect(status().isNotFound()).andReturn();
 
-        //         // assert
+                // assert
 
-        //         verify(articlesRepository, times(1)).findById(eq(7L));
-        //         Map<String, Object> json = responseToJson(response);
-        //         assertEquals("EntityNotFoundException", json.get("type"));
-        //         assertEquals("Articles with id 7 not found", json.get("message"));
-        // }
+                verify(articlesRepository, times(1)).findById(eq(7L));
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("EntityNotFoundException", json.get("type"));
+                assertEquals("Articles with id 7 not found", json.get("message"));
+        }
 
 
         // // Tests for DELETE /api/articles?id=... 
@@ -217,7 +217,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         //                         .url("https://news.ycombinator.com/item?id=39217310")
         //                         .explanation("lolololol")
         //                         .email("hyi@ucsb.edu")
-        //                         .addedDate(ldt1)
+        //                         .dateAdded(ldt1)
         //                         .build();
 
         //         when(articlesRepository.findById(eq(15L))).thenReturn(Optional.of(articles1));
@@ -271,7 +271,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         //                         .url("https://www.npr.org/2024/02/01/1228388748/biden-executive-order-israeli-settlers-west-bank-palestinians")
         //                         .explanation("heehee")
         //                         .email("yihao0906@gmail.edu")
-        //                         .addedDate(ldt1)
+        //                         .dateAdded(ldt1)
         //                         .build();
 
         //         Articles articlesEdited = Articles.builder()
@@ -279,7 +279,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         //                         .url("https://news.ycombinator.com/item?id=39217310")
         //                         .explanation("lolololol")
         //                         .email("hyi@ucsb.edu")
-        //                         .addedDate(ldt2)
+        //                         .dateAdded(ldt2)
         //                         .build();
 
         //         String requestBody = mapper.writeValueAsString(articlesEdited);
@@ -315,7 +315,7 @@ public class ArticlesControllerTests extends ControllerTestCase {
         //                         .url("https://news.ycombinator.com/item?id=39217310")
         //                         .explanation("lolololol")
         //                         .email("hyi@ucsb.edu")
-        //                         .addedDate(ldt1)
+        //                         .dateAdded(ldt1)
         //                         .build();
 
         //         String requestBody = mapper.writeValueAsString(editedArticles);
