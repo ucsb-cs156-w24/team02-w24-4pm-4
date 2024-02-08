@@ -27,7 +27,7 @@
                       "primaryKey": true,
                       "primaryKeyName": "ORGANIZATIONS"
                     },
-                    "name": "CODE",
+                    "name": "ORGCODE",
                     "type": "VARCHAR(255)"
                   }
                 },
@@ -36,46 +36,29 @@
                     "constraints": {
                       "nullable": false
                     },
-                    "name": "HAS_DINING_CAM",
-                    "type": "BOOLEAN"
-                  }
-                },
-                {
-                  "column": {
-                    "constraints": {
-                      "nullable": false
-                    },
-                    "name": "HAS_SACK_MEAL",
-                    "type": "BOOLEAN"
-                  }
-                },
-                {
-                  "column": {
-                    "constraints": {
-                      "nullable": false
-                    },
-                    "name": "HAS_TAKE_OUT_MEAL",
-                    "type": "BOOLEAN"
-                  }
-                },
-                {
-                  "column": {
-                    "name": "LATITUDE",
-                    "type": "DOUBLE(17)"
-                  }
-                },
-                {
-                  "column": {
-                    "name": "LONGITUDE",
-                    "type": "DOUBLE(17)"
-                  }
-                },
-                {
-                  "column": {
-                    "name": "NAME",
+                    "name": "ORG_TRANSLATION_SHORT",
                     "type": "VARCHAR(255)"
                   }
-                }]
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "ORG_TRANSLATION",
+                    "type": "VARCHAR(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "INACTIVE",
+                    "type": "BOOLEAN"
+                  }
+                }
+              ]
               ,
               "tableName": "UCSBORGANIZATIONS"
             }
