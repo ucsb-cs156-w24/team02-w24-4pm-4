@@ -258,83 +258,83 @@ public class ArticlesControllerTests extends ControllerTestCase {
 
         // // Tests for PUT /api/articles?id=... 
 
-        // @WithMockUser(roles = { "ADMIN", "USER" })
-        // @Test
-        // public void admin_can_edit_an_existing_articles() throws Exception {
-        //         // arrange
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_can_edit_an_existing_articles() throws Exception {
+                // arrange
 
-        //         LocalDate ldt1 = LocalDate.parse("2022-01-03T00:00:00");
-        //         LocalDate ldt2 = LocalDate.parse("2023-01-03T00:00:00");
+                LocalDate ldt1 = LocalDate.parse("2022-01-03");
+                LocalDate ldt2 = LocalDate.parse("2023-01-08");
 
-        //         Articles articlesOrig = Articles.builder()
-        //                         .title("BidenIssuesOrder")
-        //                         .url("https://www.npr.org/2024/02/01/1228388748/biden-executive-order-israeli-settlers-west-bank-palestinians")
-        //                         .explanation("heehee")
-        //                         .email("yihao0906@gmail.edu")
-        //                         .dateAdded(ldt1)
-        //                         .build();
+                Articles articlesOrig = Articles.builder()
+                                .title("BidenIssuesOrder")
+                                .url("https://www.npr.org/2024/02/01/1228388748/biden-executive-order-israeli-settlers-west-bank-palestinians")
+                                .explanation("heehee")
+                                .email("yihao0906@gmail.edu")
+                                .dateAdded(ldt1)
+                                .build();
 
-        //         Articles articlesEdited = Articles.builder()
-        //                         .title("WhoIsHiring")
-        //                         .url("https://news.ycombinator.com/item?id=39217310")
-        //                         .explanation("lolololol")
-        //                         .email("hyi@ucsb.edu")
-        //                         .dateAdded(ldt2)
-        //                         .build();
+                Articles articlesEdited = Articles.builder()
+                                .title("WhoIsHiring")
+                                .url("https://news.ycombinator.com/item?id=39217310")
+                                .explanation("lolololol")
+                                .email("hyi@ucsb.edu")
+                                .dateAdded(ldt2)
+                                .build();
 
-        //         String requestBody = mapper.writeValueAsString(articlesEdited);
+                String requestBody = mapper.writeValueAsString(articlesEdited);
 
-        //         when(articlesRepository.findById(eq(67L))).thenReturn(Optional.of(articlesOrig));
+                when(articlesRepository.findById(eq(67L))).thenReturn(Optional.of(articlesOrig));
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(
-        //                         put("/api/articles?id=67")
-        //                                         .contentType(MediaType.APPLICATION_JSON)
-        //                                         .characterEncoding("utf-8")
-        //                                         .content(requestBody)
-        //                                         .with(csrf()))
-        //                         .andExpect(status().isOk()).andReturn();
+                // act
+                MvcResult response = mockMvc.perform(
+                                put("/api/articles?id=67")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .characterEncoding("utf-8")
+                                                .content(requestBody)
+                                                .with(csrf()))
+                                .andExpect(status().isOk()).andReturn();
 
-        //         // assert
-        //         verify(articlesRepository, times(1)).findById(67L);
-        //         verify(articlesRepository, times(1)).save(articlesEdited); // should be saved with correct user
-        //         String responseString = response.getResponse().getContentAsString();
-        //         assertEquals(requestBody, responseString);
-        // }
+                // assert
+                verify(articlesRepository, times(1)).findById(67L);
+                verify(articlesRepository, times(1)).save(articlesEdited); // should be saved with correct user
+                String responseString = response.getResponse().getContentAsString();
+                assertEquals(requestBody, responseString);
+        }
 
         
-        // @WithMockUser(roles = { "ADMIN", "USER" })
-        // @Test
-        // public void admin_cannot_edit_articles_that_does_not_exist() throws Exception {
-        //         // arrange
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_cannot_edit_articles_that_does_not_exist() throws Exception {
+                // arrange
 
-        //         LocalDate ldt1 = LocalDate.parse("2022-01-03T00:00:00");
+                LocalDate ldt1 = LocalDate.parse("2022-01-03");
 
-        //         Articles editedArticles = Articles.builder()
-        //                         .title("WhoIsHiring")
-        //                         .url("https://news.ycombinator.com/item?id=39217310")
-        //                         .explanation("lolololol")
-        //                         .email("hyi@ucsb.edu")
-        //                         .dateAdded(ldt1)
-        //                         .build();
+                Articles editedArticles = Articles.builder()
+                                .title("WhoIsHiring")
+                                .url("https://news.ycombinator.com/item?id=39217310")
+                                .explanation("lolololol")
+                                .email("hyi@ucsb.edu")
+                                .dateAdded(ldt1)
+                                .build();
 
-        //         String requestBody = mapper.writeValueAsString(editedArticles);
+                String requestBody = mapper.writeValueAsString(editedArticles);
 
-        //         when(articlesRepository.findById(eq(67L))).thenReturn(Optional.empty());
+                when(articlesRepository.findById(eq(67L))).thenReturn(Optional.empty());
 
-        //         // act
-        //         MvcResult response = mockMvc.perform(
-        //                         put("/api/articles?id=67")
-        //                                         .contentType(MediaType.APPLICATION_JSON)
-        //                                         .characterEncoding("utf-8")
-        //                                         .content(requestBody)
-        //                                         .with(csrf()))
-        //                         .andExpect(status().isNotFound()).andReturn();
+                // act
+                MvcResult response = mockMvc.perform(
+                                put("/api/articles?id=67")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .characterEncoding("utf-8")
+                                                .content(requestBody)
+                                                .with(csrf()))
+                                .andExpect(status().isNotFound()).andReturn();
 
-        //         // assert
-        //         verify(articlesRepository, times(1)).findById(67L);
-        //         Map<String, Object> json = responseToJson(response);
-        //         assertEquals("Articles with id 67 not found", json.get("message"));
+                // assert
+                verify(articlesRepository, times(1)).findById(67L);
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("Articles with id 67 not found", json.get("message"));
 
-        // }
+        }
 }
