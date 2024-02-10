@@ -38,8 +38,8 @@ public class UCSBOrganizationController extends ApiController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<UCSBOrganization> allOrganizations() {
-        Iterable<UCSBOrganization> org = ucsbOrganizationRepository.findAll();
-        return org;
+        Iterable<UCSBOrganization> orgs = ucsbOrganizationRepository.findAll();
+        return orgs;
     }
 
     @Operation(summary= "Create a new organization")
