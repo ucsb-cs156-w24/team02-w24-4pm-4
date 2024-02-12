@@ -73,47 +73,47 @@ public class ArticlesController extends ApiController {
         return savedArticles;
     }
 
-    // @Operation(summary= "Get a single article")
-    // @PreAuthorize("hasRole('ROLE_USER')")
-    // @GetMapping("")
-    // public Articles getById(
-    //         @Parameter(name="id") @RequestParam Long id) {
-    //         Articles articles = articlesRepository.findById(id)
-    //             .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+    @Operation(summary= "Get a single article")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("")
+    public Articles getById(
+            @Parameter(name="id") @RequestParam Long id) {
+            Articles articles = articlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-    //     return articles;
-    // }
+        return articles;
+    }
 
-    // @Operation(summary= "Delete an article")
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
-    // @DeleteMapping("")
-    // public Object deleteArticles(
-    //         @Parameter(name="id") @RequestParam Long id) {
-    //             Articles articles = articlesRepository.findById(id)
-    //             .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+    @Operation(summary= "Delete an article")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteArticles(
+            @Parameter(name="id") @RequestParam Long id) {
+                Articles articles = articlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-    //             articlesRepository.delete(articles);
-    //     return genericMessage("Articles with id %s deleted".formatted(id));
-    // }
+                articlesRepository.delete(articles);
+        return genericMessage("Articles with id %s deleted".formatted(id));
+    }
 
-    // @Operation(summary= "Update a single article")
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
-    // @PutMapping("")
-    // public Articles updateArticles(
-    //         @Parameter(name="id") @RequestParam Long id,
-    //         @RequestBody @Valid Articles incoming) {
+    @Operation(summary= "Update a single article")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("")
+    public Articles updateArticles(
+            @Parameter(name="id") @RequestParam Long id,
+            @RequestBody @Valid Articles incoming) {
 
-    //             Articles articles = articlesRepository.findById(id)
-    //             .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+                Articles articles = articlesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-    //         articles.setTitle(incoming.getTitle());
-    //         articles.setUrl(incoming.getUrl());
-    //         articles.setExplanation(incoming.getExplanation());
-    //         articles.setEmail(incoming.getEmail());
-    //         articles.setLocalDateTime(incoming.getLocalDateTime());
+            articles.setTitle(incoming.getTitle());
+            articles.setUrl(incoming.getUrl());
+            articles.setExplanation(incoming.getExplanation());
+            articles.setEmail(incoming.getEmail());
+            articles.setDateAdded(incoming.getDateAdded());
 
-    //         articlesRepository.save(articles);
+            articlesRepository.save(articles);
 
-    //     return articles;
-    // }
+        return articles;
+    }
 }
