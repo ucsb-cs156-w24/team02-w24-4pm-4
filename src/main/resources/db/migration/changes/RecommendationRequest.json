@@ -12,7 +12,7 @@
                         "not": [
                             {
                                 "tableExists": {
-                                    "tableName": "RECOMMENDATIONREQUEST"
+                                    "tableName": "RECOMMENDATIONREQUESTS"
                                 }
                             }
                         ]
@@ -47,7 +47,7 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "EXPLAINATION",
+                                        "name": "EXPLANATION",
                                         "type": "VARCHAR(255)"
                                     }
                                 },
@@ -70,7 +70,7 @@
                                     }
                                 }
                             ],
-                            "tableName": "RECOMMENDATIONREQUEST"
+                            "tableName": "RECOMMENDATIONREQUESTS"
                         }
                     }
                 ]
