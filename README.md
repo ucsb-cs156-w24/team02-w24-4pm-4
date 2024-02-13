@@ -1,4 +1,4 @@
-# team02-w24-6pm-4
+# team02-w24-4pm-4
 
 Instructions: <https://ucsb-cs156.github.io/w24/lab/team02.html>
 
