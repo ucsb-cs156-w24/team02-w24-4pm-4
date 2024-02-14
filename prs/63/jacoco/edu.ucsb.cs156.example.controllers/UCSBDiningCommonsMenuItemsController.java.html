@@ -50,7 +50,7 @@ import javax.validation.Valid;
         @Parameter(name=&quot;name&quot;) @RequestParam String name,
         @Parameter(name=&quot;station&quot;) @RequestParam String station) 
         throws JsonProcessingException {
-            
+
 <span class="fc" id="L54">        UCSBDiningCommonsMenuItems menuItems = new UCSBDiningCommonsMenuItems();</span>
 <span class="fc" id="L55">        menuItems.setDiningCommonsCode(diningCommonsCode);</span>
 <span class="fc" id="L56">        menuItems.setName(name);</span>
@@ -61,18 +61,18 @@ import javax.validation.Valid;
 <span class="fc" id="L61">        return savedMenuItems;</span>
     }
 
-    /*@Operation(summary= &quot;Get a Menu Item&quot;)
+    @Operation(summary= &quot;Get a Single Menu Item&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;&quot;)
-    public UCSBDiningCommonsMenuItems getByID(
-        @Parameter(name=&quot;id&quot;) @RequestParam Long id
-    ){
-        UCSBDiningCommonsMenuItems menuItems = ucsbDiningCommonsMenuItemsRepository.findById(id)
-            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, id));
+    public UCSBDiningCommonsMenuItems getById(
+        @Parameter(name=&quot;id&quot;) @RequestParam Long id){
+<span class="fc" id="L69">        UCSBDiningCommonsMenuItems menuItems = ucsbDiningCommonsMenuItemsRepository.findById(id)</span>
+<span class="fc" id="L70">            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, id));</span>
 
-        return menuItems;
+<span class="fc" id="L72">        return menuItems;</span>
     }
 
+    /*
     @Operation(summary= &quot;Delete a UCSBDiningCommonsMenuItem&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @DeleteMapping(&quot;&quot;)
@@ -84,7 +84,7 @@ import javax.validation.Valid;
         ucsbDiningCommonsMenuItemsRepository.delete(menuItems);
         return genericMessage(&quot;UCSBDiningCommonsMenuItems with id %s deleted&quot;.formatted(id));
     }
-
+    
     @Operation(summary= &quot;Update a single Menu Items&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PutMapping(&quot;&quot;)
