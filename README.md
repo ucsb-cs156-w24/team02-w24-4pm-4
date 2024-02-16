@@ -5,7 +5,7 @@ Instructions: <https://ucsb-cs156.github.io/w24/lab/team02.html>
 
 |   Name          | GitHub Id     |  Database Table                |
 |-----------------|---------------|--------------------------------|
-|Rohan Morangoly  |rmarangoly     | `Help Request`                 | 
+|Rohan Marangoly  |rmarangoly     | `Help Request`                 | 
 |Alexander Nguyen |anguyen412     | `Recommendation Request`       | 
 |Hongye Liang     |hongye-liang   | `Menu Item Review`             |
 |Justin Zhang     |JustinZhang809 | `UCSB Dining Commons Menu Item`|
